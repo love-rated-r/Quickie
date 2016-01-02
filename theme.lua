@@ -5,9 +5,9 @@ local BASE = (...):match('(.-)[^%.]+$')
 local theme = {}
 
 theme.color = {
-	normal = {bg = {78,78,78}, fg = {200,200,200}, border={20,20,20}},
-	hot    = {bg = {98,98,98}, fg = {69,201,84},   border={30,30,30}},
-	active = {bg = {88,88,88}, fg = {49,181,64},   border={10,10,10}}
+	normal = {bg = { 66, 66, 66}, fg = {188,188,188}},
+	hover  = {bg = { 50,153,187}, fg = {255,255,255}},
+	active = {bg = {255,153,  0}, fg = {225,225,225}}
 }
 
 
@@ -18,6 +18,9 @@ function theme.getStateName(id)
 	end
 	if theme.core.isActive(id) then
 		return 'active'
+	end
+	if theme.core.isHot(id) then
+		return 'hover'
 	end
 	return 'normal'
 end

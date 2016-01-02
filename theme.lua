@@ -72,7 +72,10 @@ function theme.Checkbox(chk, opt, x,y,w,h)
 	theme.drawBox(x,y+(h-th)/2,th,th, c)
 	love.graphics.setColor(c.fg)
 	if chk.checked then
-		love.graphics.rectangle('fill', x+3,y+(h-th)/2+3,th-6,th-6)
+		love.graphics.setLineStyle('smooth')
+		love.graphics.setLineWidth(5)
+		love.graphics.setLineJoin("bevel")
+		love.graphics.line(x+h*.2,y+h*.55, x+h*.45,y+h*.75, x+h*.8,y+h*.2)
 	end
 
 	if chk.text then
@@ -138,7 +141,9 @@ function theme.Input(input, opt, x,y,w,h)
 	love.graphics.print(input.text, x, y+(h-th)/2)
 
 	-- cursor
-	if opt.hasKeyboardFocus then
+	if opt.hasKeyboardFocus and (love.timer.getTime() % 1) > .5 then
+		love.graphics.setLineWidth(1)
+		love.graphics.setLineStyle('rough')
 		love.graphics.line(x + cursor_pos, y + (h-th)/2,
 		                   x + cursor_pos, y + (h+th)/2)
 	end
